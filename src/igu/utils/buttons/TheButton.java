@@ -26,7 +26,7 @@ public class TheButton extends JButton implements MouseListener, MouseMotionList
      */
     private Color colorNormal = new Color(0, 139, 139);
     private Color colorPressed = new Color(0, 0, 0);   
-    private Color colorHover = new Color(38, 86, 186);
+    private Color colorHover = new Color(102, 102, 102); 
     
     private Border bordeMoved = javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(255, 255, 255));
     /**
