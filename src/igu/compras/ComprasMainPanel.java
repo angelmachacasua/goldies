@@ -19,6 +19,7 @@ public class ComprasMainPanel extends javax.swing.JPanel {
      */
     public ComprasMainPanel() {
         initComponents();
+        new ChangePanel(workPanel, new ComprasPanel());
     }
 
     /**

@@ -18,6 +18,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        new ChangePanel(mainPanel, new ComprasMainPanel());
     }
 
     /**
