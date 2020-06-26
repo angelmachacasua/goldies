@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 import org.sqlite.SQLiteConfig;
 
 /**
- *
+ * CRUD a la tabla CompraDet. Create, Read (getOne, getList), Update, Delete
  * @author Asullom
  */
 public class CompraDetData {
@@ -34,7 +34,7 @@ public class CompraDetData {
         String sql = "";
         List<CompraDet> ls = new ArrayList<CompraDet>();
 
-        sql = " SELECT * FROM compra_det "
+        sql = " SELECT * FROM compra_det " //, coalesce(cant_gr,0) as cant_gr2
                 + " WHERE comp_id = " + comp_id + " "
                 + " ORDER BY id ";
 
@@ -44,6 +44,7 @@ public class CompraDetData {
             while (rs.next()) {
                 CompraDet d = new CompraDet();
                 d.setId(rs.getInt("id"));
+                //d.setFecha(rs.getDate("fecha"));
                 String fechax = rs.getString("fecha");
                 System.out.println("list.fecha:" + fechax);
                 try {
@@ -54,8 +55,13 @@ public class CompraDetData {
                 }
                 d.setComp_id(rs.getInt("comp_id"));
                 d.setGlosa(rs.getString("glosa"));
-                d.setCant_gr(rs.getDouble("cant_gr"));
-                d.setEsdolares(rs.getInt("esdolares"));
+                try {
+                    d.setCant_gr(rs.getDouble("cant_gr"));
+                } catch (Exception e) {
+                    d.setCant_gr(0);
+                }
+               // d.setCant_gr(rs.getDouble("cant_gr2"));
+                d.setEsdolares(rs.getInt("esdolares"));// porque es not null
 
                 d.setOnza(rs.getDouble("onza"));
                 d.setPorc(rs.getDouble("porc"));
