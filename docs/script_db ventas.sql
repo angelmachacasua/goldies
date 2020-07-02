@@ -1,3 +1,12 @@
+CREATE TABLE IF NOT EXISTS producto ( -- solo para ejercicio
+	id			INTEGER PRIMARY KEY AUTOINCREMENT,
+	nombres		TEXT	NOT NULL,
+    cod  		TEXT	NULL,
+    precio		REAL	NULL,
+    fecha_ven   datetime NULL,
+    date_created datetime default current_timestamp
+);
+
 
 CREATE TABLE IF NOT EXISTS user (
 	id		INTEGER PRIMARY KEY AUTOINCREMENT,
