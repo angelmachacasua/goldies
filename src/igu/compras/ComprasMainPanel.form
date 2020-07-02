@@ -58,9 +58,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="theButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="comprasButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="theButton3" min="-2" max="-2" attributes="0"/>
+                      <Component id="clientesButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="550" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -70,8 +70,8 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="theButton3" alignment="3" pref="44" max="32767" attributes="0"/>
-                          <Component id="theButton2" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="clientesButton" alignment="3" pref="44" max="32767" attributes="0"/>
+                          <Component id="comprasButton" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
@@ -79,7 +79,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="igu.utils.buttons.TheButton" name="theButton3">
+            <Component class="igu.util.buttons.TheButton" name="clientesButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f4" green="ee" red="ef" type="rgb"/>
@@ -111,8 +111,12 @@
                 </Property>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clientesButtonMousePressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clientesButtonActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="igu.utils.buttons.TheButton" name="theButton2">
+            <Component class="igu.util.buttons.TheButton" name="comprasButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -145,7 +149,8 @@
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="theButton2ActionPerformed"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="comprasButtonMousePressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comprasButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
