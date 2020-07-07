@@ -17,8 +17,8 @@ import java.util.logging.Level;
  */
 public class CienteData {
 
-    static Connection cn = Conn.connectSQLite();
-    static PreparedStatement ps;
+    static Connection coneccion = Conn.connectSQLite();
+    static PreparedStatement ConsultaPreparada;
     static ErrorLogger log = new ErrorLogger(CienteData.class.getName());
 
     public static int create(Cliente d) {
@@ -28,11 +28,11 @@ public class CienteData {
                 + "VALUES(?,?)";
         int i = 0;
         try {
-            ps = cn.prepareStatement(sql, returns);
-            ps.setString(++i, d.getNombres());
-            ps.setString(++i, d.getInfoadic());
-            rsId = ps.executeUpdate();// 0 no o 1 si commit
-            try (ResultSet rs = ps.getGeneratedKeys()) {
+            ConsultaPreparada = coneccion.prepareStatement(sql, returns);
+            ConsultaPreparada.setString(++i, d.getNombres());
+            ConsultaPreparada.setString(++i, d.getInfoadic());
+            rsId = ConsultaPreparada.executeUpdate();// 0 no o 1 si commit
+            try (ResultSet rs = ConsultaPreparada.getGeneratedKeys()) {
                 if (rs.next()) {
                     rsId = rs.getInt(1); // select tk, max(id)  from cliente
                     //System.out.println("rs.getInt(rsId): " + rsId);
@@ -55,11 +55,11 @@ public class CienteData {
                 + "WHERE id=?";
         int i = 0;
         try {
-            ps = cn.prepareStatement(sql);
-            ps.setString(++i, d.getNombres());
-            ps.setString(++i, d.getInfoadic());
-            ps.setInt(++i, d.getId());
-            comit = ps.executeUpdate();
+            ConsultaPreparada = coneccion.prepareStatement(sql);
+            ConsultaPreparada.setString(++i, d.getNombres());
+            ConsultaPreparada.setString(++i, d.getInfoadic());
+            ConsultaPreparada.setInt(++i, d.getId());
+            comit = ConsultaPreparada.executeUpdate();
         } catch (SQLException ex) {
             log.log(Level.SEVERE, "update", ex);
         }
@@ -70,9 +70,9 @@ public class CienteData {
         int comit = 0;
         String sql = "DELETE FROM cliente WHERE id = ?";
         try {
-            ps = cn.prepareStatement(sql);
-            ps.setInt(1, id);
-            comit = ps.executeUpdate();
+            ConsultaPreparada = coneccion.prepareStatement(sql);
+            ConsultaPreparada.setInt(1, id);
+            comit = ConsultaPreparada.executeUpdate();
         } catch (SQLException ex) {
             log.log(Level.SEVERE, "delete", ex);
             // System.err.println("NO del " + ex.toString());
@@ -101,7 +101,7 @@ public class CienteData {
                     + "ORDER BY nombres";
         }
         try {
-            Statement st = cn.createStatement();
+            Statement st = coneccion.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Cliente d = new Cliente();
@@ -122,9 +122,9 @@ public class CienteData {
         String sql = "SELECT * FROM cliente WHERE id = ? ";
         int i = 0;
         try {
-            ps = cn.prepareStatement(sql);
-            ps.setInt(++i, id);
-            ResultSet rs = ps.executeQuery();
+            ConsultaPreparada = coneccion.prepareStatement(sql);
+            ConsultaPreparada.setInt(++i, id);
+            ResultSet rs = ConsultaPreparada.executeQuery();
             while (rs.next()) {
                 d.setId(rs.getInt("id"));
                 d.setNombres(rs.getString("nombres"));
@@ -138,7 +138,7 @@ public class CienteData {
     /*
     public static void iniciarTransaccion() {
         try {
-            cn.setAutoCommit(false);
+            coneccion.setAutoCommit(false);
         } catch (SQLException ex) {
             log.log(Level.SEVERE, "iniciarTransaccion", ex);
         }
@@ -146,7 +146,7 @@ public class CienteData {
 
     public static void finalizarTransaccion() {
         try {
-            cn.commit();
+            coneccion.commit();
         } catch (SQLException ex) {
             log.log(Level.SEVERE, "finalizarTransaccion", ex);
         }
@@ -154,7 +154,7 @@ public class CienteData {
 
     public static void cancelarTransaccion() {
         try {
-            cn.rollback();
+            coneccion.rollback();
         } catch (SQLException ex) {
             log.log(Level.SEVERE, "cancelarTransaccion", ex);
         }

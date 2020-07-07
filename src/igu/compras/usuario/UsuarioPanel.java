@@ -1,4 +1,4 @@
-package igu.compras.clientes;
+package igu.compras.usuario;
 
 import data.CienteData;
 import entities.Cliente;
@@ -14,11 +14,11 @@ import util.ErrorLogger;
  *
  * @author Asullom
  */
-public class ClientesPanel extends javax.swing.JPanel {
+public class UsuarioPanel extends javax.swing.JPanel {
 
-    ClientesTableModel clientesTableModel = new ClientesTableModel();
+    UsuarioTableModel clientesTableModel = new UsuarioTableModel();
 
-    public ClientesPanel() {
+    public UsuarioPanel() {
         initComponents();
         //table.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
         //table.setDefaultRenderer(Object.class, new EstiloTablaRenderer());
@@ -33,7 +33,7 @@ public class ClientesPanel extends javax.swing.JPanel {
         infoadic.setText("");
     }
 
-    private void paintTable(ClientesTableModel tableModel) {
+    private void paintTable(UsuarioTableModel tableModel) {
         this.clientesTableModel = tableModel;
         table.setModel(tableModel);
         table.getColumnModel().getColumn(0).setMaxWidth(35);
@@ -63,7 +63,6 @@ public class ClientesPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -86,13 +85,11 @@ public class ClientesPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         theButton4 = new igu.util.buttons.TheButton();
         buscarField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("jLabel4");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -228,7 +225,7 @@ public class ClientesPanel extends javax.swing.JPanel {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -292,15 +289,24 @@ public class ClientesPanel extends javax.swing.JPanel {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
         );
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("jLabel4");
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 659, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 44, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -413,7 +419,7 @@ public class ClientesPanel extends javax.swing.JPanel {
                     if (s.getId() > 0) {
                         int returnId = CienteData.update(s);
                         if (returnId != 0) {
-                            paintTable(new ClientesTableModel());
+                            paintTable(new UsuarioTableModel());
                             resetForm();
                             System.out.println("si modificado: " + returnId);
                         }
@@ -425,7 +431,7 @@ public class ClientesPanel extends javax.swing.JPanel {
                 try {
                     int returnId = CienteData.create(s);
                     if (returnId != 0) {
-                        paintTable(new ClientesTableModel());
+                        paintTable(new UsuarioTableModel());
                         // s.setId(returnId);//necesitamos subir el id, ya no
                         //tableModel.addRow(s);
                         resetForm();
@@ -468,7 +474,7 @@ public class ClientesPanel extends javax.swing.JPanel {
                     int opcion = CienteData.delete(fila.getId());
                     if (opcion != 0) {
                         //tableModel.removeRow(table.getSelectedRow());
-                        paintTable(new ClientesTableModel());
+                        paintTable(new UsuarioTableModel());
                         resetForm();
                         guardarButton.setText("REGISTRAR");
                         guardarButton.setToolTipText("REGISTRAR");
@@ -484,7 +490,7 @@ public class ClientesPanel extends javax.swing.JPanel {
 
     private void buscarFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarFieldKeyReleased
         // TODO add your handling code here:
-        ClientesTableModel tableModel = new ClientesTableModel(buscarField.getText());
+        UsuarioTableModel tableModel = new UsuarioTableModel(buscarField.getText());
         paintTable(tableModel);
 
     }//GEN-LAST:event_buscarFieldKeyReleased
@@ -495,8 +501,8 @@ public class ClientesPanel extends javax.swing.JPanel {
             ExportarExcel obj = new ExportarExcel();
             obj.exportarExcel(table);
         } catch (IOException ex) {
-            ErrorLogger.log(Level.SEVERE, ClientesPanel.class.getName() + ".ExportarExcel", ex);
-            //Logger.getLogger(ClientesPanel.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorLogger.log(Level.SEVERE, UsuarioPanel.class.getName() + ".ExportarExcel", ex);
+            //Logger.getLogger(UsuarioPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_theButton4ActionPerformed
 
